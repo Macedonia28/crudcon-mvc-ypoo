@@ -17,9 +17,9 @@ public class Uconnection {
      if(con==null){
       String usr="root";
       String pswe="";
-      String url="jdbc:mysql://localhost:3306/usuarios";
+      String url="jdbc:mysql://localhost:3306/registro";
       con=DriverManager.getConnection(url,usr,pswe);
-      
+      System.out.println("conectado");
       }
      return con;
      }
@@ -28,5 +28,9 @@ public class Uconnection {
           throw new RuntimeException(ex);
       }
      }
+ 
+ public static void main(String []args){
+     Uconnection.getConnection();
+ }
  }
 
