@@ -27,10 +27,7 @@ public class Uconnection {
           ex.printStackTrace();
           throw new RuntimeException(ex);
       }
-     }
- 
- public static void main(String []args){
-     Uconnection.getConnection();
  }
- }
+}
+
 
