@@ -7,6 +7,7 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import modelo.SqlConsultas;
 import modelo.Uconnection;
 import modelo.Usuario;
@@ -35,16 +36,27 @@ public Controlador(SqlConsultas sql,Usuario usr,login login,registro registro){
     public void actionPerformed(ActionEvent ae) {
         
       if(ae.getSource()==registro.GUARDAR){
-        String password=new String(registro.txtPassword.getText());
+        
+        String password=new  String(registro.txtPassword.getText());
+        String password2=new String(registro.txtPassword2.getText());
         usr.setId(registro.txtId.getText());
         usr.setUsuario(registro.txtUsuario.getText());
         usr.setPassword(password);
         usr.setNombre(registro.txtNombre.getText());
         usr.setApellido(registro.txtApellido.getText());
         usr.setCorreo(registro.txtCorreo.getText());
-        consultas.insertar(usr);
-        
-        
+       if(password.equals(password)){
+           
+          if(consultas.buscar(registro.txtUsuario.getText())==1){
+           JOptionPane.showMessageDialog(null,"el ususario ya existe");
+       }
+           else{
+           consultas.insertar(usr);
+        } 
+       }
+       else{
+          JOptionPane.showMessageDialog(null,"las contrasenas no son iguales");  
+       }
       }
     }
     public void iniciar(){
